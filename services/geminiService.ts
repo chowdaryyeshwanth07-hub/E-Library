@@ -8,7 +8,7 @@ export const geminiService = {
   async getBookSummary(book: Book): Promise<string> {
     try {
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.5-flash',
         contents: `Provide an insightful, engaging 3-sentence summary of the book "${book.title}" by ${book.author}. Focus on the main themes and why it's worth reading.`,
         config: {
           thinkingConfig: { thinkingBudget: 0 }
@@ -25,7 +25,7 @@ export const geminiService = {
     try {
       const catalog = books.map(b => `${b.title} by ${b.author} (${b.categories.join(', ')})`).join('\n');
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.5-flash',
         contents: `You are a helpful and knowledgeable digital librarian for 'Open Shelf Library'. 
         The current book catalog is:
         ${catalog}
@@ -44,7 +44,7 @@ export const geminiService = {
   async generateBookDescription(title: string, author: string): Promise<{ description: string; categories: string[]; year: number }> {
     try {
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.5-flash',
         contents: `Generate a book record for "${title}" by ${author}. 
         Return a JSON object with: 
         - description: A professional book blurb.
